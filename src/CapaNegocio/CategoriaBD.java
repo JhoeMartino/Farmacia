@@ -10,34 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class CategoriaBD {
 
     private Conexion mysql = new Conexion();
     private Connection cn = mysql.conectar();
     private String sql;
 
-    
     public List<Categoria> reportarCategoria() {
-
         List<Categoria> lista = new ArrayList<>();
         sql = "SELECT idcategoria,catNombre FROM categoria";
         try {
-
             PreparedStatement pst = cn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-
                 Categoria oCategoria = new Categoria();
-                
                 oCategoria.setIdcategoria(rs.getInt(1));
                 oCategoria.setCatNombre(rs.getString(2));
-
                 lista.add(oCategoria);
             }
-
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Error al reportar CategoriaBD...", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e, "Problemas al reportar categoria BD", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         return lista;
@@ -78,8 +70,8 @@ public class CategoriaBD {
         }
         return rpta;
     }
-    
-     public boolean eliminarCategoria(Categoria c) {
+
+    public boolean eliminarCategoria(Categoria c) {
         boolean rpta = false;
         sql = "DELETE FROM categoria WHERE idcategoria=?";
         try {
@@ -94,8 +86,8 @@ public class CategoriaBD {
         }
         return rpta;
     }
-     
-     public List<Categoria> buscarCategoria(String valor) {
+
+    public List<Categoria> buscarCategoria(String valor) {
 
         List<Categoria> lista = new ArrayList<>();
         sql = "SELECT idcategoria,catNombre FROM categoria WHERE catNombre LIKE ?";

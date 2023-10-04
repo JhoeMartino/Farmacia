@@ -12,15 +12,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Martino
- */
 public class Medida_IU extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Medida_IU
-     */
     public Medida_IU() {
         initComponents();
         reportar_medidas();

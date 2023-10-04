@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -85,6 +87,35 @@ public class TurnoBD {
         return rpta;
     }
     
-    
+     public List<Turno> buscarTurno(String inicio, String fin, String uDni) {
+
+        List<Turno> lista = new ArrayList<>();
+        sql = "SELECT idturno,descripcion,inicio,fin,TuDni FROM turno WHERE (inicio<? AND fin>?) AND TuDni=?";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, inicio);
+            pst.setString(2, fin);
+            pst.setString(3, uDni);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Turno oTurno = new Turno();
+                oTurno.setIdturno(rs.getInt(1));
+                oTurno.setDescripcion(rs.getString(2));
+                oTurno.setInicio(rs.getString(3));
+                oTurno.setFin(rs.getString(4));
+                oTurno.setuDni(rs.getString(5));
+
+                lista.add(oTurno);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "ERROR AL BUSCAR TURNO", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        return lista;
+
+    }
     
 }

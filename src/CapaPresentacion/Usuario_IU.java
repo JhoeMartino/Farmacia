@@ -786,11 +786,11 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabla_reporte_usuariosMousePressed
 
     private void txtBuscarApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarApellidosFocusGained
-       txtBuscarApellidos.setBackground(Color.cyan);
+        txtBuscarApellidos.setBackground(Color.cyan);
     }//GEN-LAST:event_txtBuscarApellidosFocusGained
 
     private void txtBuscarApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarApellidosFocusLost
-       txtBuscarApellidos.setBackground(Color.white);
+        txtBuscarApellidos.setBackground(Color.white);
     }//GEN-LAST:event_txtBuscarApellidosFocusLost
 
     private void txtBuscarApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarApellidosKeyTyped
@@ -812,7 +812,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             tabla_reporte_usuarios.setModel(tabla_temporal);
 
             int cantLista = tabla_temporal.getRowCount();
-        txtCantidad.setText("" + cantLista);
+            txtCantidad.setText("" + cantLista);
 
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

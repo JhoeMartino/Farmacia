@@ -15,9 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Categoria_IU extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Categoria_IU
-     */
     public Categoria_IU() {
         initComponents();
         reporte_categoria();
@@ -33,27 +30,27 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         try {
-            limpiar_tabla_formulario();
 
+            limpiar_tabla_formulario();
             DefaultTableModel tabla_temporal = (DefaultTableModel) this.tabla_reporte_categoria.getModel();
             CategoriaBD oCategoriaBD = new CategoriaBD();
-
-            List<Categoria> lista_categoria = oCategoriaBD.reportarCategoria();
-
-            for (int i = 0; i < lista_categoria.size(); i++) {
-                int idcategoria = lista_categoria.get(i).getIdcategoria();
-                String catNombre = lista_categoria.get(i).getCatNombre();
-                Object[] data = {idcategoria, catNombre};
+            List<Categoria> lista_categorias = oCategoriaBD.reportarCategoria();
+            for (int i = 0; i < lista_categorias.size(); i++) {
+                int idcategoria = lista_categorias.get(i).getIdcategoria();
+                String maNombre = lista_categorias.get(i).getCatNombre();
+                Object[] data = {idcategoria, maNombre};
                 tabla_temporal.addRow(data);
             }
-
             tabla_reporte_categoria.setModel(tabla_temporal);
-
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        } catch (Exception e) {
+            int cantLista = tabla_temporal.getRowCount();
+            txtCantidad.setText("" + cantLista);
+
+        } catch (Exception ex) {
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            e.printStackTrace();
+
+            ex.printStackTrace();
         }
 
     }
@@ -61,6 +58,7 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
     private void limpiar() {
         txtID.setText("");
         txtNombre.setText("");
+        txtBuscarCategoria.setText("");
         txtNombre.requestFocus();
     }
 
@@ -170,13 +168,10 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
 
         tabla_reporte_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "ID", "NOMBRE"
             }
         ));
         tabla_reporte_categoria.addMouseListener(new java.awt.event.MouseAdapter() {
